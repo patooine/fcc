@@ -1,0 +1,24 @@
+function translatePigLatin(str) {
+  const vowels = /[aeiou]/gi;
+  const consonates = /[^aeiou]/gi;
+  // const arr = str.split('');
+  if (str[0].match(vowels)) {
+    console.log(str+'way');
+    return str + 'way';
+  } else if (str.match(vowels) === null) {
+    console.log(str+'ay');
+    return str + 'ay';
+  }
+  else {
+    // console.log(str.split(vowels)[0].length);
+    console.log(str.split('').splice(str.split(vowels)[0].length)
+    .concat(str.split(vowels)[0] + 'ay').join(''));
+    return str.split('').splice(str.split(vowels)[0].length)
+    .concat(str.split(vowels)[0] + 'ay').join('');
+  }
+}
+
+translatePigLatin("consonant");
+// translatePigLatin("eight");
+// translatePigLatin("rhythm");
+translatePigLatin("schwartz");

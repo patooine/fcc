@@ -1,0 +1,20 @@
+function mutation(arr) {
+  // arr[0].toLowerCase();
+  // arr[1].toLowerCase();
+  // console.log(arr[1]);
+  let arr1 = arr[0].toLowerCase().split('');
+  //console.log(arr1);
+  let arr2 = arr[1].toLowerCase().split('');
+  console.log(arr2);
+  for (let letter in arr2) {
+    if (arr1.indexOf(arr2[letter]) === -1) {
+      console.log(arr2[letter])
+      return false;
+    }
+  }
+  return true;
+}
+
+//mutation(["floor", "for"]);
+mutation(["hello", "Hello"]);
+// console.log('hello'.indexOf('n'));

@@ -1,0 +1,26 @@
+// The global variable
+const bookList = ["The Hound of the Baskervilles", "On The Electrodynamics of Moving Bodies", "Philosophiæ Naturalis Principia Mathematica", "Disquisitiones Arithmeticae"];
+
+// Change code below this line
+function add(b_list, bookName) {
+  let new_list = b_list.slice();
+  new_list.push(bookName);
+  // console.log(new_list);
+  return new_list;
+  // Change code above this line
+}
+
+// Change code below this line
+function remove(b_list, bookName) {
+  const book_index = b_list.indexOf(bookName);
+  // console.log(book_index);
+  if (book_index >= 0) {
+    // console.log(b_list.slice(0, book_index).concat(b_list.slice(book_index + 1)));
+    return b_list.slice(0, book_index).concat(b_list.slice(book_index + 1));
+
+    // Change code above this line
+    }
+}
+// console.log(bookList);
+add(bookList, "A Brief History of Time");
+remove(add(bookList, "A Brief History of Time"), "On The Electrodynamics of Moving Bodies");

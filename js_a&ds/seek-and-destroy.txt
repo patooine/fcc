@@ -1,0 +1,9 @@
+function destroyer(arr) {
+  // console.log(arguments);
+  const targets = [...arguments].slice(1);
+  // console.log(targets);
+  // console.log(arr.filter(item => !targets.includes(item)));
+  return arr.filter(item => !targets.includes(item));
+}
+
+destroyer([1, 2, 3, 1, 2, 3], 2, 3);

@@ -1,0 +1,22 @@
+const globalArray = [5, 6, 3, 2, 9];
+
+function nonMutatingSort(arr) {
+  // Only change code below this line
+  let copy = arr.slice();
+  return copy.sort(function(a, b) {
+    return a === b ? 0 : a < b ? -1 : 1;
+  });
+  // let copy = arr.slice();
+  // console.log(copy);
+  // let sorted = [];
+  // // console.log(Math.min(...copy));
+  // for (let i = 0; i < arr.length; i++) {
+  //   sorted.push(Math.min(...copy));
+  //   copy.splice(copy.indexOf(Math.min(...copy)), 1);
+  // }
+  // console.log(sorted);
+  // return sorted;
+  // Only change code above this line
+}
+
+nonMutatingSort(globalArray);

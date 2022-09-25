@@ -1,0 +1,14 @@
+function palindrome(str) {
+  const cleaned_str = str.toLowerCase().replace(/[^0-9a-z]/gi, '');
+  console.log(cleaned_str);
+  const temp_arr = cleaned_str.split('');
+  let reversed_str = [];
+  for (let i = 0; i < temp_arr.length; i++) {
+    reversed_str.unshift(temp_arr[i]);
+  }
+  reversed_str = reversed_str.join('');
+  return reversed_str === cleaned_str;
+}
+
+palindrome("eye_ eye");
+palindrome("My age is 0, 0 si ega ym.")
