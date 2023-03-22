@@ -1,0 +1,18 @@
+function myReplace(str, before, after) {
+  const arr = str.split(' ');
+  let letter = before[0];
+  if (letter === letter.toUpperCase()
+  && after[0] === after[0].toLowerCase()) {
+    after = [after[0].toUpperCase()].concat(after.split('').slice(1)).join('');
+    // console.log(after);
+  } else if (letter === letter.toLowerCase()
+  && after[0] === after[0].toUpperCase()) {
+    after = [after[0].toLowerCase()].concat(after.split('').slice(1)).join('');
+    // console.log(after);
+  }
+  console.log(str.replace(before, after));
+  return str.replace(before, after);
+}
+
+myReplace("A quick brown fox jumped over the lazy dog", "jumped", "leaped");
+myReplace("He is Sleeping on the couch", "Sleeping", "sitting");

@@ -1,0 +1,13 @@
+function pairElement(str) {
+  // const arr = [];
+  const key = {A:'T',C:'G',T:'A',G:'C'};
+  // for (let i = 0; i < str.length; i++) {
+  //   arr.push([str[i],key[str[i]]]);
+  // }
+  const arr = str.split('');
+  return arr.map(x => [x,key[x]]);
+  // console.log(arr);
+  // return arr;
+}
+
+pairElement("GCG");

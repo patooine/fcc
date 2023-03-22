@@ -1,0 +1,19 @@
+function sumFibs(num) {
+  let sum = 1;
+  // const fib = [1, 1];
+  // while (fib[fib.length - 1] <= num) {
+  //   fib.push(fib[fib])
+  // }
+  let fib1 = 1;
+  let fib2 = 1;
+  while (fib2 <= num) {
+    if (fib2 % 2 === 1) { sum += fib2; }
+    var temp = fib2;
+    fib2 = fib1 + fib2;
+    fib1 = temp;
+  }
+  console.log(sum)
+  return sum;
+}
+
+sumFibs(4000000);

@@ -1,0 +1,20 @@
+function rot13(str) {
+  const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLM';
+  const arr = letters.split('')
+  const chars = /[ .,!?]/;
+  let cipher = [];
+  for (let i = 0; i < str.length; i++) {
+    if (str[i].match(chars)) {
+      // console.log(str[i]);
+      cipher.push(str[i]);
+    } else {
+      cipher.push(arr[arr.indexOf(str[i]) + 13]);
+    }
+  }
+  // console.log(arr.indexOf('N'));
+  console.log(cipher.join(''));
+  return cipher.join('');
+}
+
+rot13("SERR PBQR PNZC");
+rot13("SERR YBIR?");

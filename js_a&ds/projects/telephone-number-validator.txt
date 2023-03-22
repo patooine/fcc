@@ -1,0 +1,57 @@
+/* Note: I added a few more constraints to help reject some
+wonky inputs, still passes all given test cases. */
+function telephoneCheck(str) {
+
+  // check for right amount of numbers and non-numerics
+  if (str.match(/\d/g).length > 11 ||
+      str.match(/\d/g).length < 10 ||
+      /[^0-9 ()-]/.test(str)) return false;
+
+  if (str[0].match(/[^0-9(]/)) return false;
+
+  // check that parenthesis are in correct place (if present)
+  if (/\(\D{3}\)/.test(str)) return false;
+  // if (str.match(/\(/g) && str.match(/\(/g).length > 1)
+  //   return false;
+  for (let i = 0; i < str.length; i++) {
+    if (str[i] === '(' && i > 2) return false;
+    if (str[i] === '(' && str[i+4] != ')') return false;
+    if (str[i] === ')' && str[i-4] != '(') return false;
+  }
+
+  const regex = /[ ()-]+/g; // split conditions
+  const arr = str.split(regex);
+  const l = arr.length;
+  // console.log(arr);
+  // console.log(str.split(/\d+/));
+
+  // check for non-numeric characters
+  // for (let i in arr) {
+  //   if (arr[i].match(/\D/)) return false;
+  // }
+
+  // check for too many number groupings
+  if (l > 4) return false;
+
+  // reject inputs with improper number groupings
+  if (arr[l - 1].length < 4) return false;
+  if (arr[l - 1].length > 4 &&
+      arr[l - 1].length < 10) return false;
+  if (arr[l - 1].length === 4) {
+    if (arr[l - 2].length != 3 ||
+        arr[l - 3].length != 3) return false;
+  }
+
+  // check that country code is 1 (if provided)
+  if (arr.join('').length === 11 &&
+      arr.join('')[0] != 1) return false;
+
+  return true;
+}
+
+telephoneCheck("6054756961");
+console.log(telephoneCheck('1(555)555-5555'));
+// console.log(telephoneCheck('5(- -)55555-5555'));
+
+// console.log('(---)15555555555'.match(/\(\D{3}\)/g));
+// console.log(/\(\D{3}\)/.test('5(- -)55555-5555'))

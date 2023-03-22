@@ -1,0 +1,54 @@
+function checkCashRegister(price, cash, cid) {
+  let change = [];
+  let change_due = cash - price;
+  const lookup = {'ONE HUNDRED':100, TWENTY:20, TEN:10, FIVE:5, ONE:1, 
+                  QUARTER:0.25, DIME:0.1, NICKEL:0.05, PENNY:0.01};
+  // const lookup = {PENNY:.01, NICKEL:.05, DIME:.1, QUARTER:.25, ONE:1, 
+  //                 FIVE:5, TEN:10, TWENTY:20, 'ONE HUNDRED':100};
+  
+  // for (let i in lookup) {
+  //   console.log(i, lookup[i]);
+  // }
+
+  // calculate sum of cid
+  let sum = 0;
+  for (let i in cid) {
+    sum += cid[i][1];
+    // console.log(sum);
+  }
+  // sum = sum.toFixed(2);
+  console.log(change_due, sum);
+
+  if (change_due > sum) {
+    console.log('if1');
+    return {status: "INSUFFICIENT_FUNDS", change: []};
+  } else if (change_due === sum) {
+    console.log('c');
+    return {status: "CLOSED", change: cid};
+  }
+
+  for (let j = cid.length - 1; j >= 0; j--) {
+    var cu_sum = 0; // sum of current currency unit
+    while (cid[j][1] > 0 && change_due + 0.001 >= lookup[cid[j][0]]) {
+      cu_sum += lookup[cid[j][0]];  // increment by respective lookup amount
+      cid[j][1] -= lookup[cid[j][0]]; // decrement by r.l.a.
+      change_due -= lookup[cid[j][0]];
+    }
+    // console.log(change_due);
+    // only push change array if this currency unit was used
+    if (cu_sum != 0) change.push([cid[j][0], cu_sum])
+  }
+  
+  if (Math.round(change_due*100) === 0) {
+    console.log({status: "OPEN", change: change});
+    return {status: "OPEN", change: change};
+  } else {  // can not return exact change
+    console.log('if2');
+    return {status: "INSUFFICIENT_FUNDS", change: []};
+  }
+}
+
+// checkCashRegister(19.5, 20, [["PENNY", 1.01], ["NICKEL", 2.05], ["DIME", 3.1], ["QUARTER", 4.25], ["ONE", 90], ["FIVE", 55], ["TEN", 20], ["TWENTY", 60], ["ONE HUNDRED", 100]]);
+// checkCashRegister(19.5, 20, [["PENNY", 0.5], ["NICKEL", 0], ["DIME", 0], ["QUARTER", 0], ["ONE", 0], ["FIVE", 0], ["TEN", 0], ["TWENTY", 0], ["ONE HUNDRED", 0]]);
+// checkCashRegister(3.26, 100, [["PENNY", 1.01], ["NICKEL", 2.05], ["DIME", 3.1], ["QUARTER", 4.25], ["ONE", 90], ["FIVE", 55], ["TEN", 20], ["TWENTY", 60], ["ONE HUNDRED", 100]]);
+checkCashRegister(19.5, 20, [["PENNY", 0.01], ["NICKEL", 0], ["DIME", 0], ["QUARTER", 0], ["ONE", 1], ["FIVE", 0], ["TEN", 0], ["TWENTY", 0], ["ONE HUNDRED", 0]]);

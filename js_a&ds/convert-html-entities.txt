@@ -1,0 +1,10 @@
+function convertHTML(str) {
+  const key = {'&':'&amp;', '<':'&lt;', '>':'&gt;', '\"':'&quot;', '\'':'&apos;'};
+  const arr = str.split('');
+  for (let i in key) {
+    console.log(i,':', key[i], ':', arr.indexOf(i));
+  }
+  return str.replace(/[&<>"']/g, match => key[match]);
+}
+
+convertHTML("Dolce & Gabbana");
